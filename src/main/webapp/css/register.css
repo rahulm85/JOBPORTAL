@@ -1,0 +1,323 @@
+/* ===========================================
+   REGISTER PAGE
+=========================================== */
+
+.auth-body{
+
+    min-height:100vh;
+
+    background:linear-gradient(135deg,#2563eb,#1d4ed8,#0f172a);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:40px;
+
+}
+
+/* ===========================================
+   CONTAINER
+=========================================== */
+
+.auth-container{
+
+    width:95%;
+
+    max-width:1350px;
+
+    background:#fff;
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    box-shadow:0 20px 60px rgba(0,0,0,.25);
+
+}
+
+/* ===========================================
+   LEFT SIDE
+=========================================== */
+
+.auth-left{
+
+    background:linear-gradient(135deg,#2563eb,#1d4ed8);
+
+    color:#fff;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:60px;
+
+}
+
+.auth-left h1{
+
+    font-size:48px;
+
+    margin-bottom:20px;
+
+}
+
+.auth-left p{
+
+    font-size:18px;
+
+    text-align:center;
+
+    line-height:1.8;
+
+    margin-bottom:35px;
+
+}
+
+.auth-left img{
+
+    width:80%;
+
+    max-width:400px;
+
+}
+
+/* ===========================================
+   RIGHT SIDE
+=========================================== */
+
+.auth-right{
+
+    background:#f8fafc;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:35px;
+
+}
+
+/* ===========================================
+   CARD
+=========================================== */
+
+.auth-card{
+
+    width:100%;
+
+    max-width:550px;
+
+    background:#fff;
+
+    padding:40px;
+
+    border-radius:20px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+
+}
+
+.auth-card h2{
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+    color:#111827;
+
+}
+
+/* ===========================================
+   INPUT GROUP
+=========================================== */
+
+.input-group{
+
+    margin-bottom:18px;
+
+}
+
+.input-group label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    font-weight:600;
+
+    color:#374151;
+
+}
+
+.input-group input,
+.input-group select,
+.input-group textarea{
+
+    width:100%;
+
+    padding:14px;
+
+    border:1px solid #d1d5db;
+
+    border-radius:10px;
+
+    font-size:15px;
+
+    transition:.3s;
+
+}
+
+.input-group textarea{
+
+    resize:none;
+
+    height:90px;
+
+}
+
+.input-group input:focus,
+.input-group select:focus,
+.input-group textarea:focus{
+
+    border-color:#2563eb;
+
+    box-shadow:0 0 10px rgba(37,99,235,.25);
+
+}
+
+/* ===========================================
+   COMPANY SECTION
+=========================================== */
+
+#companyFields{
+
+    margin-top:25px;
+
+    padding:20px;
+
+    border-radius:15px;
+
+    background:#eef4ff;
+
+    border:1px solid #dbeafe;
+
+}
+
+#companyFields h3{
+
+    color:#2563eb;
+
+    margin-bottom:20px;
+
+}
+
+/* ===========================================
+   BUTTON
+=========================================== */
+
+.primary-btn{
+
+    width:100%;
+
+    padding:15px;
+
+    background:#2563eb;
+
+    color:white;
+
+    border:none;
+
+    border-radius:10px;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.primary-btn:hover{
+
+    background:#1d4ed8;
+
+    transform:translateY(-2px);
+
+}
+
+/* ===========================================
+   LINK
+=========================================== */
+
+.bottom-text{
+
+    margin-top:20px;
+
+    text-align:center;
+
+    color:#6b7280;
+
+}
+
+.bottom-text a{
+
+    color:#2563eb;
+
+    font-weight:600;
+
+}
+
+.bottom-text a:hover{
+
+    text-decoration:underline;
+
+}
+
+/* ===========================================
+   RESPONSIVE
+=========================================== */
+
+@media(max-width:992px){
+
+    .auth-container{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .auth-left{
+
+        display:none;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .auth-right{
+
+        padding:20px;
+
+    }
+
+    .auth-card{
+
+        padding:25px;
+
+    }
+
+}
