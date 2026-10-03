@@ -642,3 +642,32 @@ function removeSavedJob(id){
 	    );
 
 	}
+/* ---------------- AI JOB INTELLIGENCE ---------------- */
+var AI_BASE_URL=window.location.protocol+"//"+window.location.hostname+":8000";
+function aiText(v){var d=document.createElement("div");d.textContent=v==null?"":String(v);return d.innerHTML;}
+function aiStatus(v){var e=document.getElementById("aiStatus");if(e)e.innerText=v||"";}
+function runAISearch(){
+ var q=document.getElementById("aiQuery").value.trim(),p=document.getElementById("aiProfile").value.trim(),k=Number(document.getElementById("aiTopK").value);
+ if(!q){alert("Enter an AI job search question");return;}
+ aiStatus("Searching with hybrid retrieval and reranking...");
+ fetch(AI_BASE_URL+"/api/ai/search",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({query:q,profile:p,top_k:k})})
+ .then(r=>r.ok?r.json():r.text().then(t=>{throw new Error(t||"AI service error")}))
+ .then(d=>{
+  aiStatus("Pipeline: "+d.pipeline+" | Latency: "+d.latency_ms+" ms");
+  document.getElementById("aiAnswer").innerHTML="<h3>AI Answer</h3><p>"+aiText(d.answer)+"</p>";
+  var out="<h3>Retrieved Jobs</h3>";
+  d.results.forEach(x=>out+="<div class='ai-job-card'><strong>#"+x.rank+" "+aiText(x.title)+"</strong><span>"+aiText(x.company)+"</span><span>"+aiText(x.location)+"</span><small>Score: "+Number(x.score).toFixed(4)+" | Job ID: "+x.job_id+"</small><p>"+aiText(x.snippet)+"</p></div>");
+  document.getElementById("aiResults").innerHTML=out;
+ }).catch(e=>{aiStatus("AI service unavailable.");document.getElementById("aiAnswer").innerHTML="<p class='ai-error'>"+aiText(e.message)+"</p>";});
+}
+function runSkillGap(){
+ var q=document.getElementById("aiQuery").value.trim(),p=document.getElementById("aiProfile").value.trim();
+ if(!q||!p){alert("Enter both the target role/question and your profile");return;}
+ aiStatus("Analyzing required and missing skills...");
+ fetch(AI_BASE_URL+"/api/ai/skill-gap",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({query:q,profile:p,top_k:3})})
+ .then(r=>r.ok?r.json():r.text().then(t=>{throw new Error(t||"Skill-gap service error")}))
+ .then(d=>{
+  aiStatus("Skill-gap latency: "+d.latency_ms+" ms");
+  document.getElementById("aiAnswer").innerHTML="<h3>Skill Gap Analysis</h3><p><strong>Role:</strong> "+aiText(d.job_title||"No matching role")+"</p><p><strong>Matched:</strong> "+aiText(d.matched_skills.join(", ")||"None detected")+"</p><p><strong>Missing:</strong> "+aiText(d.missing_skills.join(", ")||"None detected")+"</p>";
+ }).catch(e=>{aiStatus("AI service unavailable.");document.getElementById("aiAnswer").innerHTML="<p class='ai-error'>"+aiText(e.message)+"</p>";});
+}
