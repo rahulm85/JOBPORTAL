@@ -17,6 +17,8 @@ href="${pageContext.request.contextPath}/css/common.css">
 
 <link rel="stylesheet"
 href="${pageContext.request.contextPath}/css/candidate.css">
+<link rel="stylesheet"
+href="${pageContext.request.contextPath}/css/ai-search.css">
 
 </head>
 
@@ -182,6 +184,23 @@ onkeyup="searchJobs()">
 
 
 
+
+<div class="section" id="ai-search">
+<h2>AI Job Search & Skill Gap</h2>
+<p class="ai-subtitle">Hybrid keyword + semantic job retrieval with reranking and skill-gap analysis.</p>
+<div class="ai-panel">
+<textarea id="aiProfile" rows="4" placeholder="Your profile: Java, Spring Boot, MySQL, REST APIs, Python, SQL, Git"></textarea>
+<div class="ai-controls">
+<input id="aiQuery" type="text" placeholder="Which Java backend roles fit my profile?">
+<select id="aiTopK"><option value="5">Top 5</option><option value="10">Top 10</option></select>
+<button class="primary-btn" onclick="runAISearch()">AI Search</button>
+<button class="secondary-btn" onclick="runSkillGap()">Skill Gap</button>
+</div>
+<div id="aiStatus" class="ai-status"></div>
+<div id="aiAnswer" class="ai-answer"></div>
+<div id="aiResults" class="ai-results"></div>
+</div>
+</div>
 <!-- BROWSE JOBS -->
 
 
